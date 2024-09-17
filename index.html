@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Pomodoro Timer</title>
+  <script type="module" crossorigin src="/pomodoro-timer/assets/index-BO7KJqpw.js"></script>
+  <link rel="stylesheet" crossorigin href="/pomodoro-timer/assets/index-uzwjoPep.css">
+</head>
+<body class="flex items-center justify-center h-screen bg-gray-100">
+  <div x-data="pomodoroTimer()" x-init="init()" class="bg-white p-8 rounded shadow-lg text-center">
+    <h1 class="text-4xl font-bold mb-6">Pomodoro Timer</h1>
+    <div class="text-xl mb-4">
+      Current Session: <span x-text="isPomodoro ? 'Pomodoro' : 'Break'"></span>
+    </div>
+    <div id="timer" class="text-6xl font-mono mb-6" x-text="formattedTime"></div>
+    <div class="flex justify-center space-x-4 mb-6">
+      <!-- Start Button -->
+      <button @click="startTimer" class="bg-green-500 text-white p-4 rounded-full hover:bg-green-600" :disabled="isRunning">
+        <!-- Play Icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mx-auto" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M6 4l12 6-12 6V4z" />
+        </svg>
+      </button>
+      <!-- Pause Button -->
+      <button @click="pauseTimer" class="bg-yellow-500 text-white p-4 rounded-full hover:bg-yellow-600" :disabled="!isRunning">
+        <!-- Pause Icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mx-auto" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M6 4h4v12H6V4zm6 0h4v12h-4V4z" />
+        </svg>
+      </button>
+      <!-- Stop Button -->
+      <button @click="resetTimer" class="bg-red-500 text-white p-4 rounded-full hover:bg-red-600">
+        <!-- Stop Icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mx-auto" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M6 4h8v12H6V4z" />
+        </svg>
+      </button>
+    </div>
+    <div class="mt-6">
+      <label class="block mb-2">Pomodoro Time (minutes)</label>
+      <input type="number" x-model.number="pomodoroTimeInput" @change="updateTimes" class="border px-4 py-2 rounded w-full mb-4" min="1">
+      <label class="block mb-2">Break Time (minutes)</label>
+      <input type="number" x-model.number="breakTimeInput" @change="updateTimes" class="border px-4 py-2 rounded w-full" min="1">
+    </div>
+  </div>
+  <!-- Include your JavaScript file -->
+</body>
+</html>
